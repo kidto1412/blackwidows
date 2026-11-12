@@ -1,0 +1,10 @@
+[
+  {
+    "subdomain": "engine.io.",
+    "status": 200
+  },
+  {
+    "subdomain": "socket.io.",
+    "status": 200
+  }
+]

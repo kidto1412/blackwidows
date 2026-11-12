@@ -1,0 +1,131 @@
+# Django — known-asset & directory wordlist
+# Use with gobuster/dirb/ffuf, e.g.:
+#   gobuster dir -u https://target.me -w wordlists/framework/django.txt
+
+# Admin & auth
+
+# Login & auth (Django accounts)
+
+# Django admin paths
+
+# API endpoints
+
+# Debug & dev tools
+
+# Database & config
+
+# Static & media
+
+# Django contrib modules
+
+# Common paths
+
+# Error pages
+
+# Common Django paths
+
+# Additional Django paths
+
+# Template paths
+
+# Common Django URLs
+/admin/
+/admin/login/
+/admin/logout/
+/admin/password_reset/
+/admin/password_change/
+/admin/createsuperuser/
+/admin/register/
+/admin/user/
+/admin/users/
+/admin/group/
+/admin/groups/
+/admin/role/
+/admin/roles/
+/admin/member/
+/admin/members/
+/admin/staff/
+/admin/staffs/
+/admin/superuser/
+/admin/superusers/
+/admin/seat/
+/admin/seats/
+/admin/tenant/
+/admin/tenants/
+/admin/subdomain/
+/admin/subdomains/
+/admin/organization/
+/admin/organizations/
+/admin/company/
+/admin/business/
+/admin/account/
+/admin/accounts/
+/admin/profile/
+/admin/profile/edit/
+/admin/edit/
+/admin/settings/
+/admin/config/
+/admin/manage/
+/admin/management/
+/admin/dashboard/
+/admin/console/
+/admin/manager/
+/admin/mgr/
+/admin/host/
+/admin/hosts/
+/admin/provider/
+/admin/providers/
+/admin/service/
+/admin/services/
+/admin/app/
+/admin/apps/
+/admin/module/
+/admin/modules/
+/admin/plugin/
+/admin/plugins/
+/admin/extension/
+/admin/extensions/
+/accounts/login/
+/accounts/logout/
+/accounts/register/
+/accounts/activate/
+/accounts/password_reset/
+/accounts/password_reset/done/
+/accounts/reset/
+/accounts/reset/done/
+/accounts/verify/
+/accounts/confirm/
+/accounts/change/
+/accounts/profile/
+/api/
+/api/v1/
+/api/v2/
+/api/v3/
+/api/docs/
+/api/swagger/
+/api/redoc/
+/api/schema/
+/api/openapi/
+/api/json/
+/api/books/
+/api/articles/
+/api/products/
+/api/categories/
+/api/reviews/
+/api/comments/
+/api/tags/
+/api/authors/
+/api/orders/
+/api/payments/
+/api/webhooks/
+/api/hooks/
+/__debug__/
+/__debug__
+/debug/
+/debug_toolbar/
+/debug_toolbar/toolbar/
+/debug_toolbar/toolbar/toolbar/
+/_debug_/
+/_.py
+/_.pyc
+/_.pyo

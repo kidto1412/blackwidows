@@ -1,0 +1,58 @@
+# Nuxt.js — Directory/Files Wordlist
+# For authorized penetration testing only.
+# Usage: python3 blackwidow.py scan -u https://target.com --full -f nuxt
+
+# Full-stack Vue framework — Nitro server, server routes, and static assets
+
+# Nuxt directories
+_nuxt/
+_nuxt/static/
+_nuxt/data/
+_nuxt/__nuxt_error
+_nuxt/*
+
+# API routes
+/api/
+/api/*
+
+# Nuxt config files
+nuxt.config.js
+nuxt.config.ts
+nuxt.config.json
+nuxt.config.mjs
+nitro.config.js
+nitro.config.ts
+
+# Server routes (Nuxt server directory)
+server/
+server/api/
+server/middleware/
+server/plugins/
+server/utils/
+
+# Static assets
+static/
+static/images/
+static/fonts/
+static/icons/
+
+# Node.js app files
+package.json
+package-lock.json
+yarn.lock
+nuxi.json
+tsconfig.json
+jsconfig.json
+
+# Legacy Nuxt v2
+.nuxt/
+.nuxt/*
+
+# Common misconfigured paths
+.env
+.env.local
+.env.server
+robots.txt
+sitemap.xml
+accessibility
+visualizer

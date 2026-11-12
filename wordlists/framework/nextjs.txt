@@ -1,0 +1,188 @@
+# Next.js — known-asset & directory wordlist
+# File-based routing; target the app root.
+# gobuster dir -u https://target.me -w wordlists/framework/nextjs.txt
+
+# Core routes
+/
+/home
+/login
+/register
+/signin
+/admin
+/admin/login
+/api
+/api/v1
+/api/v1/users
+/api/v1/items
+/api/v1/products
+/api/v1/orders
+/api/v1/events
+/api/v1/export
+/graphql
+/graphql/query
+/graphql/mutation
+
+# Config & metadata
+/next.config.js
+/package.json
+/.env
+/.git
+/.git/config
+/.git/HEAD
+/.git/index
+/.git/logs
+/.git/objects
+
+/_next
+/_next/static
+/_next/static/chunks
+/_next/static/main.js
+/_next/static/framework.js
+/static
+/static/images
+/public
+/assets
+/assets/images
+/images/logo.png
+/favicon.ico
+/manifest.json
+/service-worker.js
+
+# Admin & upload
+/admin/login
+/api/v1/login
+/api/v1/register
+/uploads
+/upload
+/upload_file
+/files
+/download
+
+# Backup
+/backup
+/backup.bak
+/backup.zip
+/index.html.bak
+
+# Source control & IDE
+/.gitignore
+/.svn
+/.hg
+/.cache
+/.vs
+/.env.bak
+/.env.backup
+/.env.old
+/.env.example
+
+# Session & auth
+/.session
+/.sid
+/.sid.txt
+
+# Error & debug
+/500.html
+/debug
+/debug.log
+/health
+/healthz
+/live
+/livez
+/metrics
+/env
+
+# Misc
+/robots.txt
+/sitemap.xml
+/__debug__
+# Core routes (additional)
+/about
+/contact
+/shop
+/buy
+/demo
+/account
+/profile
+/dashboard
+/admin/dashboard
+/contact
+
+# Config & metadata (additional)
+/next.config.mjs
+/package-lock.json
+/.env.local
+/.env.development
+/.env.test
+/.env.production
+/.git/HEAD
+/.git/index
+/.git/logs
+/.git/objects
+/.git/hooks
+/.git/objects/pack
+
+# Asset directories (additional)
+/_next/static/chunks/main.js
+/_next/static/chunks/framework.js
+/_next/static/chunks/pages
+/_next/static/media
+/css/main.css
+/js/main.js
+/images/logo.png
+/images/banner.jpg
+/fonts/roboto
+/apple-touch-icon.png
+
+# Admin & upload (additional)
+/admin/users
+/admin/roles
+/admin/settings
+/admin/config
+/admin/env
+/admin/logs
+/uploads/
+/upload_file.aspx
+/files/
+
+# Backup (additional)
+/backups
+/backup.zip
+/index.html.old
+/wp-config.bak
+
+# Source control & IDE (additional)
+/.gitattributes
+/.svn/entries
+/.vs/ProjectSettings
+/.env.dist
+
+# Session & auth (additional)
+/.sessionid
+/.sid.txt
+/.sessionid.txt
+
+# Error & debug (additional)
+/503.html
+/404.html
+/403.html
+/debug/log
+/logs
+/errors
+/stacktrace
+/readiness
+/readyz
+/metrics.xml
+/env.xml
+/config
+/config.yaml
+/config.yml
+/settings
+/settings.json
+
+# Misc (additional)
+/robots.txt.bak
+/feed.xml
+/atom.xml
+/_next/
+
+# End of nextjs.txt
