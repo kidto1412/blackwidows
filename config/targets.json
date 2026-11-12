@@ -3,6 +3,14 @@
     {
       "url": "layanan.komdigi.go.id",
       "name": "layanan.komdigi.go.id"
+    },
+    {
+      "url": "http://layanan.komdigi.go.id",
+      "name": "http://layanan.komdigi.go.id"
+    },
+    {
+      "url": "https://layanan.komdigi.go.id",
+      "name": "https://layanan.komdigi.go.id"
     }
   ]
 }

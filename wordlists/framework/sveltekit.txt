@@ -1,0 +1,67 @@
+# SvelteKit — Directory/Files Wordlist
+# For authorized penetration testing only.
+# Usage: python3 blackwidow.py scan -u https://target.com --full -f sveltekit
+
+# Full-stack Svelte framework — Kit, server routes, and client assets
+
+# App routes (SvelteKit conventional)
+_app/
+_app/immutable/
+_app/immutable/[hash]*
+_app/immutable/[hash]/[fn]*
+_app/version.json
+
+# Server routes (src/routes, +server.js)
+/server/
+/server/[id]/
+/server/[id]/api/
+/server/[id]/+server.js
+/server/[id]/+layout.js
+
+# Data fetching
+__data.json
+__data.json
+
+# Static assets
+/static/
+/static/[name]*
+/static/images/
+/static/fonts/
+/static/icons/
+
+# Svelte config
+svelte.config.js
+svelte.config.cjs
+svelte.config.mjs
+svelte.config.ts
+
+# Node.js app files
+package.json
+package-lock.json
+yarn.lock
+npm-shrinkwrap.json
+tsconfig.json
+jsconfig.json
+svelte.config.js
+
+# Node.js files (server side)
+node_modules/
+.node_repl_history
+npm-debug.log
+
+# Common misconfigured paths
+/.env
+/.env.local
+/.env.production
+/robots.txt
+/sitemap.xml
+/.well-known/
+/.git/
+/.git/config
+
+# Auth and admin surfaces
+/login
+/register
+/logout
+/admin
+/__session

@@ -1,0 +1,94 @@
+# Common — Base Generic Wordlist
+# For authorized penetration testing only.
+# Usage: python3 blackwidow.py scan -u https://target.com --full -f common
+
+# Fallback profile for frontend-only frameworks (React, Angular, Vue)
+# Use this when backend is on a separate domain or cannot be determined
+
+# Common web directories
+auth/
+admin/
+login/
+register/
+logout/
+blog/
+contact/
+about/
+dashboard/
+profile/
+settings/
+api/
+assets/
+static/
+uploads/
+files/
+images/
+css/
+js/
+fonts/
+img/
+media/
+private/
+config/
+includes/
+lib/
+tmp/
+temp/
+backup/
+.svn/
+.git/
+.hg/
+.exrc
+_ignition/
+telescope/
+horizon/
+nova/
+livewire/
+sanctum/
+storage/
+
+# Common files
+robots.txt
+sitemap.xml
+favicon.ico
+manifest.json
+readme.html
+license.txt
+changelog.txt
+README.md
+.env
+.env.local
+.env.production
+.env.development
+database.sql
+dump.sql
+backup.sql
+config.php
+config.ini
+config.json
+settings.php
+wp-config.php
+appsettings.json
+web.config
+global.asax
+web.xml
+application.properties
+database.php
+config/database.php
+
+# Common endpoints
+/.well-known/
+/.git/
+/.svn/
+/assets/
+/static/
+/media/
+/robots.txt
+/sitemap.xml
+/health
+/healthz
+/ready
+/ping
+
+# CSRF protection
+/csrf-cookie

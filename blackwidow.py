@@ -3,16 +3,27 @@ import argparse
 import json
 import os
 import sys
-from core.scanner import PortScanner, DirScanner, SubdomainScanner
-from core.exploit import SQLiScanner, XSSScanner, WPScanner
+
+from core.scanner import PortScanner, DirScanner, SubdomainScanner, FfufScanner, DirsearchScanner
+from core.exploit import (
+    SQLiScanner, XSSScanner, WPScanner,
+    IDORScanner, AuthBypassScanner, SSRFScanner,
+    SessionScanner, CredentialHarvester,
+    HashIdentifier, DefacementDetector,
+)
 from core.brute import BruteForcer
-from core.utils import banner, save_report
+from core.utils import banner, save_report, normalize_url
+from core.detector import FrameworkDetector
+
+
+# ─────────────────────────── Targets ──────────────────────────────────────
 
 def load_targets():
     if os.path.exists("config/targets.json"):
         with open("config/targets.json") as f:
             return json.load(f)
     return {"targets": []}
+
 
 def save_target(url, name=None):
     targets = load_targets()
@@ -22,73 +33,200 @@ def save_target(url, name=None):
         json.dump(targets, f, indent=2)
     print(f"[+] Saved target: {url}")
 
-def setup_detect_parser(subparsers):
-    parser = subparsers.add_parser("detect", help="Detect frontend tech and map to wordlist")
-    parser.add_argument("-u", "--url", required=True, help="Target URL to analyze")
-    parser.add_argument("--auto-scan", action="store_true", help="Auto-scan with mapped wordlist")
-    return parser
+
+
+def cmd_detect(args):
+    print(f"\n[fw] Deep-scanning {args.url} ...\n")
+    detector = FrameworkDetector(args.url)
+    result = detector.detect()
+
+    if "error" in result:
+        print(f"[fw] Error: {result['error']}")
+        return
+
+    print(f"[fw] URL         : {result['final_url']} [{result['status']}]")
+    print(f"[fw] Server      : {result['server']}")
+    if result['x_powered_by']:
+        print(f"[fw] X-Powered-By: {result['x_powered_by']}")
+    if result.get('api_base'):
+        print(f"[fw] API Base    : {result['api_base']}")
+
+    print(f"\n[fw] Raw headers:")
+    for k, v in result['raw_headers'].items():
+        print(f"     {k}: {v}")
+
+    # Live backend endpoints
+    live = result.get("live_api_endpoints", [])
+    if live:
+        print(f"\n[fw] Live backend endpoints ({len(live)} found):")
+        for ep in live:
+            xpb = f" X-Powered-By={ep['x_powered_by']}" if ep.get('x_powered_by') else ""
+            print(f"  [{ep['status']}] {ep['path']}{xpb}")
+            if ep.get('body') and ep['status'] != 200:
+                print(f"       {ep['body'][:120]}")
+
+    frameworks = result.get("frameworks", [])
+    if not frameworks:
+        print("\n[fw] No matching framework signatures found.")
+        print("[fw] Try checking Wappalyzer/BuiltWith manually or run --creds to probe config files.")
+        return
+
+    print(f"\n[fw] Detected ({len(frameworks)} match{'es' if len(frameworks) != 1 else ''}):")
+    for i, fw in enumerate(frameworks[:10], 1):
+        bar = "█" * min(fw["score"], 20)
+        print(f"  {i}. {fw['name']:<22} score={fw['score']:>3}  {bar}")
+        print(f"       evidence: {', '.join(str(e) for e in fw['evidence'][:4])}")
+
+    top = result["top"]
+    if top:
+        print(f"\n[fw] Best match  : {top['name']} (score={top['score']})")
+        print(f"[fw] Wordlist    : {top['wordlist']}")
+        print(f"[fw] Suggested   : python3 blackwidow.py scan -u {args.url} --dirs -w {top['wordlist']}")
+
+    # Save result
+    save_report(result, "detect")
+
+    if args.auto_scan and top:
+        import subprocess
+        fw_flag_map = {
+            "wordpress": "wordpress", "laravel": "laravel", "django": "django",
+            "asp.net core": "dotnet", "java spring": "java-spring",
+            "next.js": "nextjs", "nuxt.js": "nuxt", "sveltekit": "sveltekit",
+            "vue.js": "vue", "react": "react", "angular": "angular",
+        }
+        fw_flag = fw_flag_map.get(top["name"].lower())
+        cmd = ["python3", "blackwidow.py", "scan", "-u", args.url, "--dirs"]
+        if fw_flag:
+            cmd += ["-f", fw_flag]
+        else:
+            cmd += ["-w", top["wordlist"]]
+        print(f"\n[fw] Auto-scanning: {' '.join(cmd)}")
+        subprocess.run(cmd)
+
+
+# ─────────────────────────── Hash Identify ────────────────────────────────
+
+def cmd_hash(args):
+    hashes = []
+    if args.hash:
+        hashes = [args.hash]
+    elif args.file:
+        with open(args.file) as f:
+            hashes = [l.strip() for l in f if l.strip()]
+    else:
+        print("[-] Provide --hash or --file")
+        return
+
+    results = HashIdentifier.identify_many(hashes)
+    for h, types in results.items():
+        print(f"[hash] {h[:40]}... → {', '.join(types)}" if len(h) > 40 else f"[hash] {h} → {', '.join(types)}")
+    save_report(results, "hash_identify")
+
+
+# ─────────────────────────── Main ─────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(
-        description="BlackWidow - All-in-One Web Hacking Toolkit",
+        description="BlackWidow — All-in-One Web Hacking Toolkit",
         formatter_class=argparse.RawTextHelpFormatter,
         epilog="""Examples:
-  python3 blackwidow.py scan -u example.com --full
-  python3 blackwidow.py exploit -u example.com --sqli --xss
-  python3 blackwidow.py brute -u example.com/login --users users.txt --passwords «redacted-secret»
+  python3 blackwidow.py scan -u http://target.com --full
+  python3 blackwidow.py scan -u http://target.com --dirs --ffuf
+  python3 blackwidow.py exploit -u http://target.com?id=1 --sqli --xss --ssrf --idor
+  python3 blackwidow.py exploit -u http://target.com --auth-bypass --session --creds
+  python3 blackwidow.py exploit -u http://target.com --defacement
+  python3 blackwidow.py brute -u http://target.com/login --users users.txt --passwords wordlists/passwords.txt
+  python3 blackwidow.py hash --hash '$2y$10$abc...'
+  python3 blackwidow.py hash --file hashes.txt
   python3 blackwidow.py report --export html
+  python3 blackwidow.py detect -u http://target.com --auto-scan
         """
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    # SCAN COMMAND
-    scan_parser = subparsers.add_parser("scan", help="Scan targets")
-    scan_parser.add_argument("-u", "--url", help="Target URL")
-    scan_parser.add_argument("--ports", help="Port range (e.g., 1-1000)")
-    scan_parser.add_argument("--dirs", action="store_true", help="Directory brute force")
-    scan_parser.add_argument("--subdomains", action="store_true", help="Subdomain enumeration")
-    scan_parser.add_argument("--full", action="store_true", help="Full scan (ports + dirs + subdomains)")
-    scan_parser.add_argument("-t", "--threads", type=int, default=20, help="Threads (default: 20)")
-    scan_parser.add_argument("-w", "--wordlist", help="Custom wordlist path")
-    scan_parser.add_argument("-f", "--framework", choices=[
-        "wordpress", "laravel", "java-spring", "dotnet", "nextjs", "django"
-    ], help="Use wordlists/framework/<name>.txt for directory scanning")
+    # ── SCAN ──
+    sp = subparsers.add_parser("scan", help="Scan targets (ports, dirs, subdomains)")
+    sp.add_argument("-u", "--url", required=True, help="Target URL or IP")
+    sp.add_argument("--ports", help="Port range (e.g. 1-1000 or 22,80,443)")
+    sp.add_argument("--dirs", action="store_true", help="Directory brute force")
+    sp.add_argument("--subdomains", action="store_true", help="Subdomain enumeration")
+    sp.add_argument("--full", action="store_true", help="Full scan (ports + dirs + subdomains)")
+    sp.add_argument("-t", "--threads", type=int, default=20, help="Threads (default: 20)")
+    sp.add_argument("-w", "--wordlist", help="Custom wordlist path")
+    sp.add_argument("-e", "--extensions", help="Extensions to append (e.g. .php,.bak,.html)")
+    sp.add_argument("--ffuf", action="store_true", help="Use ffuf for dir fuzzing (if installed)")
+    sp.add_argument("--dirsearch", action="store_true", help="Use dirsearch for dir fuzzing (if installed)")
+    sp.add_argument("-f", "--framework", choices=[
+        "wordpress", "laravel", "java-spring", "dotnet", "nextjs",
+        "django", "nuxt", "sveltekit", "vue", "react", "angular",
+    ], help="Use framework-specific wordlist")
 
-    # EXPLOIT COMMAND
-    exploit_parser = subparsers.add_parser("exploit", help="Exploit vulnerabilities")
-    exploit_parser.add_argument("-u", "--url", required=True, help="Target URL")
-    exploit_parser.add_argument("--sqli", action="store_true", help="SQL Injection scan")
-    exploit_parser.add_argument("--xss", action="store_true", help="XSS scan")
-    exploit_parser.add_argument("--wp", action="store_true", help="WordPress scan")
-    exploit_parser.add_argument("--cms", action="store_true", help="CMS detection")
+    # ── EXPLOIT ──
+    ep = subparsers.add_parser("exploit", help="Exploit/test vulnerabilities")
+    ep.add_argument("-u", "--url", required=True, help="Target URL")
+    ep.add_argument("--sqli", action="store_true", help="SQL Injection scan")
+    ep.add_argument("--xss", action="store_true", help="XSS scan")
+    ep.add_argument("--wp", action="store_true", help="WordPress deep scan")
+    ep.add_argument("--cms", action="store_true", help="CMS detection")
+    ep.add_argument("--idor", action="store_true", help="IDOR scan")
+    ep.add_argument("--idor-range", type=int, default=50, help="IDOR ID range (default: 50)")
+    ep.add_argument("--auth-bypass", action="store_true", help="Auth bypass scan")
+    ep.add_argument("--ssrf", action="store_true", help="SSRF + path traversal scan")
+    ep.add_argument("--session", action="store_true", help="Session/cookie management scan")
+    ep.add_argument("--creds", action="store_true", help="Credential/config file harvesting")
+    ep.add_argument("--defacement", action="store_true", help="Defacement detection")
+    ep.add_argument("--all", action="store_true", help="Run all exploit modules")
+    ep.add_argument("--cookie", help="Session cookie (e.g. session=abc123)")
 
-    # BRUTE COMMAND
-    brute_parser = subparsers.add_parser("brute", help="Brute force attacks")
-    brute_parser.add_argument("-u", "--url", required=True, help="Target URL (e.g., http://example.com/login)")
-    brute_parser.add_argument("--users", help="Username wordlist")
-    brute_parser.add_argument("--passwords", help="Password wordlist")  # FIXED: Changed from --pass to --passwords
-    brute_parser.add_argument("--form", help="Form data (e.g., 'user={}&pass={}')")
-    brute_parser.add_argument("-t", "--threads", type=int, default=10, help="Threads (default: 10)")
+    # ── BRUTE ──
+    bp = subparsers.add_parser("brute", help="Brute force login")
+    bp.add_argument("-u", "--url", required=True, help="Login URL")
+    bp.add_argument("--users", help="Username wordlist")
+    bp.add_argument("--passwords", help="Password wordlist")
+    bp.add_argument("--form", help="Form template (e.g. 'username={}&password={}')")
+    bp.add_argument("-t", "--threads", type=int, default=10, help="Threads (default: 10)")
 
-    # REPORT COMMAND
-    report_parser = subparsers.add_parser("report", help="Generate reports")
-    report_parser.add_argument("--export", help="Export format (txt, json, html)")
-    report_parser.add_argument("--output", help="Output file path")
+    # ── HASH ──
+    hp = subparsers.add_parser("hash", help="Hash identification")
+    hp.add_argument("--hash", help="Single hash string to identify")
+    hp.add_argument("--file", help="File with one hash per line")
 
-    # TARGETS COMMAND
-    targets_parser = subparsers.add_parser("targets", help="Manage targets")
-    targets_parser.add_argument("--add", help="Add target URL")
-    targets_parser.add_argument("--list", action="store_true", help="List saved targets")
-    targets_parser.add_argument("--name", help="Target name")
+    # ── REPORT ──
+    rp = subparsers.add_parser("report", help="Generate/export reports")
+    rp.add_argument("--export", choices=["txt", "json", "html"], help="Export format")
+    rp.add_argument("--output", help="Output file path")
 
-    # DETECT COMMAND
-    setup_detect_parser(subparsers)
+    # ── TARGETS ──
+    tp = subparsers.add_parser("targets", help="Manage targets")
+    tp.add_argument("--add", help="Add target URL")
+    tp.add_argument("--list", action="store_true", help="List saved targets")
+    tp.add_argument("--name", help="Target name label")
+
+    # ── DETECT ──
+    dp = subparsers.add_parser("detect", help="Detect framework and map wordlist")
+    dp.add_argument("-u", "--url", required=True, help="Target URL")
+    dp.add_argument("--auto-scan", action="store_true", help="Auto-scan with detected wordlist")
 
     args = parser.parse_args()
 
+    # ── Cookies helper ──
+    def parse_cookies(cookie_str):
+        if not cookie_str:
+            return {}
+        cookies = {}
+        for part in cookie_str.split(";"):
+            part = part.strip()
+            if "=" in part:
+                k, v = part.split("=", 1)
+                cookies[k.strip()] = v.strip()
+        return cookies
+
+    # ════════════════════════════════════════════════════════
     if args.command == "scan":
         banner()
+        exts = [e.strip() for e in args.extensions.split(",")] if getattr(args, "extensions", None) else []
+
         if args.full:
             args.ports = "1-1000"
             args.dirs = True
@@ -100,21 +238,38 @@ def main():
             save_report(scanner.results, "port_scan")
 
         if args.dirs:
-            if args.framework:
-                fw_map = {
-                    "wordpress": "wordlists/framework/wordpress.txt",
-                    "laravel": "wordlists/framework/laravel.txt",
-                    "java-spring": "wordlists/framework/java-spring.txt",
-                    "dotnet": "wordlists/framework/dotnet.txt",
-                    "nextjs": "wordlists/framework/nextjs.txt",
-                    "django": "wordlists/framework/django.txt",
-                }
-                wordlist = fw_map[args.framework]
+            fw_map = {
+                "wordpress": "wordlists/framework/wordpress.txt",
+                "laravel": "wordlists/framework/laravel.txt",
+                "java-spring": "wordlists/framework/java-spring.txt",
+                "dotnet": "wordlists/framework/dotnet.txt",
+                "nextjs": "wordlists/framework/nextjs.txt",
+                "django": "wordlists/framework/django.txt",
+                "nuxt": "wordlists/framework/nuxt.txt",
+                "sveltekit": "wordlists/framework/sveltekit.txt",
+                "vue": "wordlists/framework/common.txt",
+                "react": "wordlists/framework/common.txt",
+                "angular": "wordlists/framework/common.txt",
+            }
+            wordlist = (fw_map[args.framework] if args.framework else None) or args.wordlist or "wordlists/common_dirs.txt"
+
+            if args.ffuf:
+                ffuf = FfufScanner(args.url, wordlist, extensions=exts, threads=args.threads)
+                if not ffuf.run():
+                    # fallback
+                    scanner = DirScanner(args.url, wordlist, threads=args.threads, extensions=exts)
+                    scanner.scan()
+                    save_report(scanner.results, "dir_scan")
+            elif args.dirsearch:
+                ds = DirsearchScanner(args.url, wordlist=wordlist, extensions=exts, threads=args.threads)
+                if not ds.run():
+                    scanner = DirScanner(args.url, wordlist, threads=args.threads, extensions=exts)
+                    scanner.scan()
+                    save_report(scanner.results, "dir_scan")
             else:
-                wordlist = args.wordlist or "wordlists/common_dirs.txt"
-            scanner = DirScanner(args.url, wordlist, threads=args.threads)
-            scanner.scan()
-            save_report(scanner.results, "dir_scan")
+                scanner = DirScanner(args.url, wordlist, threads=args.threads, extensions=exts)
+                scanner.scan()
+                save_report(scanner.results, "dir_scan")
 
         if args.subdomains:
             wordlist = args.wordlist or "wordlists/subdomains.txt"
@@ -122,215 +277,101 @@ def main():
             scanner.scan()
             save_report(scanner.results, "subdomain_scan")
 
+    # ════════════════════════════════════════════════════════
     elif args.command == "exploit":
         banner()
-        if args.sqli:
-            scanner = SQLiScanner(args.url)
-            scanner.scan()
-            save_report(scanner.vulnerabilities, "sqli_scan")
+        cookies = parse_cookies(getattr(args, "cookie", None))
+        run_all = getattr(args, "all", False)
 
-        if args.xss:
-            scanner = XSSScanner(args.url)
-            scanner.scan()
-            save_report(scanner.vulnerabilities, "xss_scan")
+        if args.sqli or run_all:
+            sc = SQLiScanner(args.url)
+            sc.scan()
+            save_report(sc.vulnerabilities, "sqli_scan")
 
-        if args.wp:
-            scanner = WPScanner(args.url)
-            scanner.scan()
-            save_report(scanner.vulnerabilities, "wp_scan")
+        if args.xss or run_all:
+            sc = XSSScanner(args.url)
+            sc.scan()
+            save_report(sc.vulnerabilities, "xss_scan")
 
+        if args.idor or run_all:
+            sc = IDORScanner(args.url, id_range=args.idor_range, cookies=cookies)
+            sc.scan()
+            save_report(sc.vulnerabilities, "idor_scan")
+
+        if args.auth_bypass or run_all:
+            sc = AuthBypassScanner(args.url, cookies=cookies)
+            sc.scan()
+            save_report(sc.vulnerabilities, "auth_bypass_scan")
+
+        if args.ssrf or run_all:
+            sc = SSRFScanner(args.url)
+            sc.scan()
+            save_report(sc.vulnerabilities, "ssrf_scan")
+
+        if args.session or run_all:
+            sc = SessionScanner(args.url)
+            sc.scan()
+            save_report(sc.vulnerabilities, "session_scan")
+
+        if args.creds or run_all:
+            sc = CredentialHarvester(args.url)
+            sc.scan()
+            save_report(sc.found, "cred_harvest")
+
+        if args.defacement or run_all:
+            sc = DefacementDetector(args.url)
+            result = sc.check()
+            save_report(result, "defacement_check")
+
+        if args.wp or run_all:
+            sc = WPScanner(args.url)
+            sc.scan()
+            save_report(sc.vulnerabilities, "wp_scan")
+
+    # ════════════════════════════════════════════════════════
     elif args.command == "brute":
         banner()
         forcer = BruteForcer(
             args.url,
             users=args.users,
-            passwords=args.passwords,  # FIXED: Changed from args.pass to args.passwords
+            passwords=args.passwords,
             form=args.form,
-            threads=args.threads
+            threads=args.threads,
         )
         forcer.attack()
         save_report(forcer.results, "brute_force")
 
+    # ════════════════════════════════════════════════════════
+    elif args.command == "hash":
+        banner()
+        cmd_hash(args)
+
+    # ════════════════════════════════════════════════════════
     elif args.command == "report":
         banner()
         if args.export:
             from core.report import export_report
             export_report(args.export, args.output)
+        else:
+            print("[-] Specify --export [txt|json|html]")
 
+    # ════════════════════════════════════════════════════════
     elif args.command == "targets":
         banner()
         if args.add:
             save_target(args.add, args.name)
         if args.list:
             targets = load_targets()
-            for i, target in enumerate(targets["targets"], 1):
-                print(f"{i}. {target['name'] or target['url']} ({target['url']})")
+            if not targets["targets"]:
+                print("[-] No targets saved.")
+            for i, t in enumerate(targets["targets"], 1):
+                print(f"  {i}. {t.get('name', t['url'])} ({t['url']})")
 
+    # ════════════════════════════════════════════════════════
     elif args.command == "detect":
+        banner()
         cmd_detect(args)
+
 
 if __name__ == "__main__":
     main()
-
-
-def detect_frontend(url):
-    """Detect frontend tech from a URL and return mapping.
-
-    Returns a dict with:
-    - framework: detected framework name
-    - wordlist: path to wordlist to use
-    - description: human-readable description
-    - frontend_only: bool (True if frontend-only, no backend detected)
-    - backend: backend framework (if known)
-    """
-    import requests
-    try:
-        r = requests.get(url, timeout=5, allow_redirects=False)
-        content_type = r.headers.get('content-type', '')
-        if 'html' not in content_type and 'text' not in content_type:
-            return None, None
-
-        import re
-        html = r.text.lower()
-
-        # Signature matching - separate frontend and backend frameworks
-        # Backend frameworks (these have attack surfaces we target)
-        backend_signatures = {
-            'wordpress': ['/wp-admin/', '/wp-login.php', '/wp-includes/', 'wp-content', 'wp-generator'],
-            'laravel': ['/.env', '/artisan', '/public/index.php', 'laravel'],
-            'java-spring': ['/actuator/health', '/actuator/info', '/error/', '/.git/config'],
-            'dotnet': ['/web.config', '/appsettings.json', '/bin/', '/.aspx', 'microsoft.aspnetcore'],
-            'django': ['/static/admin/', '/admin/login/', '/media/', 'django-admin', 'django'],
-        }
-
-        # Frontend frameworks (these are client-side, but may imply a backend)
-        frontend_signatures = {
-            # Full-stack frameworks (have server-side routes)
-            'nextjs': ['/_next/static/', '/_next/data/', '/_next/', 'next/link', 'next/image'],
-            'nuxt': ['/nuxt/', '/_nuxt/', '/__nuxt_error', 'nuxt', '.nuxt/'],
-            'sveltekit': ['/__svelte/', '/__svelte/env', 'sveltekit', 'src/routes/'],
-            # Frontend-only frameworks
-            'vue': ['/assets/vue/', 'vue-class-component', 'vuex', 'vue-router'],
-            'react': ['/assets/react/', 'react-dom', 'react-router', 'createelement'],
-            'angular': ['/assets/angular/', 'ng-', 'ng-app', 'angular/'],
-        }
-
-        # Find best backend match
-        best_backend = None
-        best_backend_score = 0
-        for fw, patterns in backend_signatures.items():
-            score = 0
-            for p in patterns:
-                if p in html:
-                    score += 1
-            if score > best_backend_score:
-                best_backend_score = score
-                best_backend = fw
-
-        # Find best frontend match
-        best_frontend = None
-        best_frontend_score = 0
-        for fw, patterns in frontend_signatures.items():
-            score = 0
-            for p in patterns:
-                if p in html:
-                    score += 1
-            if score > best_frontend_score:
-                best_frontend_score = score
-                best_frontend = fw
-
-        # Build result
-        result = {
-            'framework': None,
-            'wordlist': None,
-            'frontend_only': True,
-            'backend': None,
-            'description': '',
-        }
-
-        # Check for backend frameworks first
-        if best_backend:
-            result['wordlist'] = f'wordlists/framework/{best_backend}.txt'
-            result['frontend_only'] = False
-            result['backend'] = best_backend
-            result['description'] = f"Backend: {best_backend}"
-            return result
-
-        # Check for frontend frameworks
-        if best_frontend:
-            if best_frontend == 'nextjs':
-                result['wordlist'] = 'wordlists/framework/nextjs.txt'
-                result['frontend_only'] = False
-                result['backend'] = 'node.js'
-                result['description'] = 'Next.js full-stack React framework (SSR/SSG)'
-            elif best_frontend == 'nuxt':
-                result['wordlist'] = 'wordlists/framework/nextjs.txt'
-                result['frontend_only'] = False
-                result['backend'] = 'node.js'
-                result['description'] = 'Nuxt.js Vue-based full-stack framework'
-            elif best_frontend == 'sveltekit':
-                result['wordlist'] = 'wordlists/framework/nextjs.txt'
-                result['frontend_only'] = False
-                result['backend'] = 'node.js'
-                result['description'] = 'SvelteKit full-stack Svelte framework'
-            elif best_frontend == 'vue':
-                result['frontend_only'] = True
-                result['description'] = 'Vue.js frontend framework detected. No backend determined.'
-            elif best_frontend == 'react':
-                result['frontend_only'] = True
-                result['description'] = 'React frontend framework detected. Determine backend separately.'
-            elif best_frontend == 'angular':
-                result['frontend_only'] = True
-                result['description'] = 'Angular frontend framework detected. Determine backend separately.'
-            result['framework'] = best_frontend
-            return result
-
-        # No match found
-        result['description'] = 'No matching signatures found - check if target is a custom app'
-        return result
-
-    except Exception as e:
-        return None, None, str(e)
-
-
-def cmd_detect(args):
-    """Detect frontend tech from a URL."""
-    print(f"\n[fw] Analyzing {args.url}...\n")
-    result = detect_frontend(args.url)
-
-    if not result:
-        print(f"[fw] Could not detect framework from URL")
-        if args.auto_scan:
-            print("[-] Skipping scan, no framework detected")
-        return
-
-    fw = result.get('framework', 'unknown')
-    wordlist = result.get('wordlist', '')
-    frontend_only = result.get('frontend_only', True)
-    backend = result.get('backend', None)
-    description = result.get('description', '')
-
-    print(f"[fw] Frontend tech detected: {fw}")
-    if wordlist:
-        print(f"[fw] Wordlist: {wordlist}")
-    print(f"[fw] Use: python3 blackwidow.py scan -u {args.url} --full -f {fw}")
-
-    # Show backend info if separate API domain is suspected
-    if frontend_only and backend:
-        print(f"\n[fw] Note: Frontend-only framework ({fw}) detected.")
-        print(f"[fw] No backend found on this domain. Check if the API is hosted on a separate domain, e.g., {args.url}/api")
-        print(f"[fw] If backend is on a separate domain (e.g., api.example.com), run detect against that domain.")
-
-    if args.auto_scan:
-        import subprocess
-        cmd = ['python3', 'blackwidow.py', 'scan', '-u', args.url, '--full', '-f', fw]
-        print(f"\n[fw] Auto-scanning with {fw} wordlist...")
-        print(f"[fw] Command: {' '.join(cmd)}")
-        subprocess.run(cmd)
-
-
-def setup_detect_parser(subparsers):
-    parser = subparsers.add_parser("detect", help="Detect frontend tech and map to wordlist")
-    parser.add_argument("-u", "--url", required=True, help="Target URL to analyze")
-    parser.add_argument("--auto-scan", action="store_true", help="Auto-scan with mapped wordlist")
-    return parser

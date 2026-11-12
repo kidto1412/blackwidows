@@ -1,1 +1,392 @@
-[]
+[
+  {
+    "url": "https://ingetinaja.web.id/media/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/about/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/files/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/login/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/backup/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/includes/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/contact/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/register/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/config/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/fonts/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/auth/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/blog/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/logout/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/dashboard/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.svn/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/js/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/css/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/profile/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/private/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/assets/",
+    "status": 403,
+    "size": 162
+  },
+  {
+    "url": "https://ingetinaja.web.id/tmp/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/uploads/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/temp/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/settings/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/lib/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/admin/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/images/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/img/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/static/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.exrc",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.hg/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.git/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/nova/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/livewire/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/_ignition/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/telescope/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/horizon/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/storage/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/README.md",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/sanctum/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/license.txt",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.env",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/changelog.txt",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/database.sql",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/settings.php",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/readme.html",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/robots.txt",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/manifest.json",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/config.json",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.env.production",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/config.ini",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.env.local",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/appsettings.json",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.env.development",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/config.php",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/wp-config.php",
+    "status": 403,
+    "size": 4553
+  },
+  {
+    "url": "https://ingetinaja.web.id/dump.sql",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/sitemap.xml",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/backup.sql",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/application.properties",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/database.php",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/global.asax",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/web.config",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/config/database.php",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.git/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.well-known/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/media/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/assets/",
+    "status": 403,
+    "size": 162
+  },
+  {
+    "url": "https://ingetinaja.web.id/web.xml",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/.svn/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/robots.txt",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/static/",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/sitemap.xml",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/ping",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/ready",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/health",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/healthz",
+    "status": 200,
+    "size": 811
+  },
+  {
+    "url": "https://ingetinaja.web.id/csrf-cookie",
+    "status": 200,
+    "size": 811
+  }
+]
