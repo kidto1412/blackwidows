@@ -116,9 +116,17 @@ class DirScanner:
         self.wordlist = wordlist
         self.threads = threads
         self.results = []
-        self.extensions = extensions or []   # e.g. [".php", ".asp", ".bak"]
+        self.extensions = extensions or []
+        self._baseline = None
+        self._lock = __import__("threading").Lock()
 
-    def scan_dir(self, path):
+    def _get_baseline(self):
+        if self._baseline is None:
+            self._baseline = BaselineFingerprint(self.url)
+            self._baseline.compute()
+        return self._baseline
+
+    def scan_dir(self, path, baseline):
         path = path.lstrip("/")
         targets = [f"{self.url}/{path}"]
         for ext in self.extensions:
@@ -127,30 +135,48 @@ class DirScanner:
         for test_url in targets:
             try:
                 r = requests.get(test_url, timeout=5, allow_redirects=False)
-                if r.status_code in (200, 301, 302, 403):
-                    entry = {"url": test_url, "status": r.status_code, "size": len(r.content)}
+
+                # Only care about these status codes
+                if r.status_code not in (200, 301, 302, 403, 401, 405, 500):
+                    continue
+
+                # Filter SPA soft-404: 200 that looks like the catch-all page
+                if r.status_code == 200 and baseline.is_false_positive(r):
+                    continue
+
+                entry = {
+                    "url": test_url,
+                    "status": r.status_code,
+                    "size": len(r.content),
+                    "content_type": r.headers.get("Content-Type", "")[:60],
+                }
+                with self._lock:
                     self.results.append(entry)
-                    print(f"[+] Found: {test_url} [{r.status_code}] ({len(r.content)} bytes)")
+
+                status_label = {
+                    200: "OK", 301: "REDIRECT", 302: "REDIRECT",
+                    401: "AUTH", 403: "FORBIDDEN", 405: "METHOD", 500: "ERROR",
+                }.get(r.status_code, str(r.status_code))
+                print(f"[+] {status_label:10s} {test_url} ({len(r.content)} bytes)")
             except Exception:
                 pass
 
     def scan(self):
         try:
             with open(self.wordlist) as f:
-                paths = f.read().splitlines()
+                paths = [l.strip() for l in f if l.strip() and not l.startswith("#")]
         except FileNotFoundError:
             print(f"[-] Wordlist not found: {self.wordlist}")
             return
 
-        print(f"[*] Dir scan: {self.url} | wordlist: {self.wordlist} ({len(paths)} entries)")
-        with ThreadPoolExecutor(max_workers=self.threads) as executor:
-            for raw in paths:
-                path = raw.strip()
-                if not path or path.startswith("#"):
-                    continue
-                executor.submit(self.scan_dir, path)
+        baseline = self._get_baseline()
+        print(f"[*] Dir scan: {self.url} | {self.wordlist} ({len(paths)} entries) | threads={self.threads}")
 
-        print(f"[*] Dir scan done. {len(self.results)} paths found.")
+        with ThreadPoolExecutor(max_workers=self.threads) as executor:
+            for path in paths:
+                executor.submit(self.scan_dir, path, baseline)
+
+        print(f"[*] Dir scan done. {len(self.results)} real paths found (soft-404s filtered).")
 
 
 # ─────────────────────────── Ffuf / Dirsearch Integration ─────────────────
