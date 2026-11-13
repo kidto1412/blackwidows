@@ -1,0 +1,208 @@
+BlackWidow Report — 20261113_091513
+============================================================
+
+
+=== auth_bypass_scan.json ===
+
+=== brute_force.json ===
+
+=== cred_harvest.json ===
+{
+  "url": "https://ingetinaja.web.id/wp-config.php",
+  "status": 403,
+  "size": 4553,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}
+{
+  "url": "https://ingetinaja.web.id/wp-config.php.bak",
+  "status": 403,
+  "size": 4553,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}
+
+=== defacement_check.json ===
+{
+  "url": "https://ingetinaja.web.id?id=1",
+  "defacement_keywords": [],
+  "changed": null,
+  "hash_mismatch": null
+}
+
+=== detect.json ===
+{
+  "url": "https://ingetinaja.web.id",
+  "final_url": "https://ingetinaja.web.id/",
+  "status": 200,
+  "server": "cloudflare",
+  "x_powered_by": "",
+  "frameworks": [
+    {
+      "name": "React",
+      "evidence": [
+        "js:react.transitional.element",
+        "js:__reactFiber",
+        "js:isReactComponent",
+        "js:createRoot",
+        "js:createElement"
+      ],
+      "score": 8
+    },
+    {
+      "name": "Cloudflare",
+      "evidence": [
+        "header:server=cloudflare",
+        "header:cf-ray"
+      ],
+      "score": 2
+    },
+    {
+      "name": "Google Font API",
+      "evidence": [
+        "html:fonts.googleapis.com"
+      ],
+      "score": 1
+    },
+    {
+      "name": "Vite",
+      "evidence": [
+        "js:modulepreload"
+      ],
+      "score": 1
+    }
+  ],
+  "top": {
+    "name": "React",
+    "evidence": [
+      "js:react.transitional.element",
+      "js:__reactFiber",
+      "js:isReactComponent",
+      "js:createRoot",
+      "js:createElement"
+    ],
+    "score": 8,
+    "wordlist": "wordlists/framework/common.txt"
+  },
+  "api_base": "/api/v1",
+  "live_api_endpoints": [
+    {
+      "path": "/graphql",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/gql",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/actuator/health",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/swagger.json",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/openapi.json",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/api-docs",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/swagger/index.html",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/swagger-ui/",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    }
+  ],
+  "raw_headers": {
+    "Date": "Fri, 13 Nov 2026 02:10:29 GMT",
+    "Content-Type": "text/html",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Server": "cloudflare",
+    "Last-Modified": "Mon, 02 Nov 2026 11:31:50 GMT",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Server-Timing": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=21,cfOrigin;dur=28",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=e4oCKdSvxdFf1W%2BB7PDsUOjclXOTuRwEDpM8q9SDgz66cV97LEz4U6gfbEJGtTS8tNrV5YVLdEIviJdq6y8offaTrThFtVri7tI%2FhkR3wyajfWH4CHCvAeCT5i9E3fF5xh3a8A%3D%3D\"}]}",
+    "cf-cache-status": "DYNAMIC",
+    "vary": "accept-encoding",
+    "Content-Encoding": "gzip",
+    "CF-RAY": "a59a3d850aecfb70-SIN",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  }
+}
+
+=== dir_scan.json ===
+{
+  "url": "https://ingetinaja.web.id/favicon.png",
+  "status": 200,
+  "size": 5731,
+  "content_type": "image/png"
+}
+{
+  "url": "https://ingetinaja.web.id/api",
+  "status": 301,
+  "size": 178,
+  "content_type": "text/html"
+}
+
+=== idor_scan.json ===
+
+=== port_scan.json ===
+{
+  "port": 80,
+  "status": "open",
+  "service": "http"
+}
+{
+  "port": 443,
+  "status": "open",
+  "service": "https"
+}
+
+=== session_scan.json ===
+
+=== sqli_scan.json ===
+
+=== ssrf_scan.json ===
+
+=== subdomain_scan.json ===
+{
+  "subdomain": "www.ingetinaja.web.id",
+  "url": "https://www.ingetinaja.web.id",
+  "status": 200,
+  "title": "ingetinaja. | Remember only what matters."
+}
+
+=== wp_scan.json ===
+
+=== xss_scan.json ===

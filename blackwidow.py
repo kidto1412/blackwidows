@@ -12,8 +12,9 @@ from core.exploit import (
     HashIdentifier, DefacementDetector,
 )
 from core.brute import BruteForcer
-from core.utils import banner, save_report, normalize_url
+from core.utils import banner, save_report, normalize_url, get_domain
 from core.detector import FrameworkDetector
+from core.js_miner import JSBundleMiner
 
 
 # ─────────────────────────── Targets ──────────────────────────────────────
@@ -104,6 +105,17 @@ def cmd_detect(args):
         subprocess.run(cmd)
 
 
+# ─────────────────────────── JS Bundle Mining ─────────────────────────────
+
+def cmd_js_mine(args):
+    print(f"\n[js] Mining bundles from {args.url} ...\n")
+    miner = JSBundleMiner(args.url, depth=getattr(args, "depth", 2))
+    results = miner.run()
+    save_report(results, "js_mine")
+    if getattr(args, "export_wordlist", None):
+        miner.export_wordlist(args.export_wordlist)
+
+
 # ─────────────────────────── Hash Identify ────────────────────────────────
 
 def cmd_hash(args):
@@ -121,6 +133,39 @@ def cmd_hash(args):
     for h, types in results.items():
         print(f"[hash] {h[:40]}... → {', '.join(types)}" if len(h) > 40 else f"[hash] {h} → {', '.join(types)}")
     save_report(results, "hash_identify")
+
+
+def check_wp_allowed(target_url, force=False):
+    """
+    Check whether WordPress scan should proceed.
+    If detect command found non-WordPress technologies (e.g. React, Cloudflare)
+    and no WordPress indicators, do not run WP scan unless explicitly forced.
+    """
+    if force:
+        return True, "Forced by user flag"
+
+    detect_path = "reports/detect.json"
+    if os.path.exists(detect_path):
+        try:
+            with open(detect_path, "r") as f:
+                detect_data = json.load(f)
+
+            target_domain = get_domain(target_url)
+            detect_domain = get_domain(detect_data.get("url", ""))
+
+            if target_domain and detect_domain and target_domain == detect_domain:
+                frameworks = detect_data.get("frameworks", [])
+                fw_names = [f["name"] for f in frameworks if isinstance(f, dict) and "name" in f]
+                fw_lower = [name.lower() for name in fw_names]
+
+                has_wp = any("wordpress" in name for name in fw_lower)
+                if not has_wp and fw_names:
+                    summary = " + ".join(fw_names[:2])
+                    return False, f"detect command found {summary} (no WordPress)"
+        except Exception:
+            pass
+
+    return True, "OK"
 
 
 # ─────────────────────────── Main ─────────────────────────────────────────
@@ -177,6 +222,8 @@ def main():
     ep.add_argument("--creds", action="store_true", help="Credential/config file harvesting")
     ep.add_argument("--defacement", action="store_true", help="Defacement detection")
     ep.add_argument("--all", action="store_true", help="Run all exploit modules")
+    ep.add_argument("--js", "--js-mine", dest="js_mine", action="store_true", help="Mine JS bundles for endpoints & secrets")
+    ep.add_argument("--force", "--force-wp", dest="force", action="store_true", help="Force WP scan even if non-WordPress detected")
     ep.add_argument("--cookie", help="Session cookie (e.g. session=abc123)")
 
     # ── BRUTE ──
@@ -207,6 +254,12 @@ def main():
     dp = subparsers.add_parser("detect", help="Detect framework and map wordlist")
     dp.add_argument("-u", "--url", required=True, help="Target URL")
     dp.add_argument("--auto-scan", action="store_true", help="Auto-scan with detected wordlist")
+
+    # ── JS-MINE ──
+    jmp = subparsers.add_parser("js-mine", aliases=["mine", "jsmine"], help="Mine JS bundles for routes, endpoints & secrets")
+    jmp.add_argument("-u", "--url", required=True, help="Target URL")
+    jmp.add_argument("--depth", type=int, default=2, help="Recursive chunk discovery depth (default: 2)")
+    jmp.add_argument("--export-wordlist", help="Save discovered API routes as wordlist file")
 
     args = parser.parse_args()
 
@@ -323,10 +376,20 @@ def main():
             result = sc.check()
             save_report(result, "defacement_check")
 
+        if getattr(args, "js_mine", False) or run_all:
+            miner = JSBundleMiner(args.url)
+            results = miner.run()
+            save_report(results, "js_mine")
+
         if args.wp or run_all:
-            sc = WPScanner(args.url)
-            sc.scan()
-            save_report(sc.vulnerabilities, "wp_scan")
+            force_wp = getattr(args, "force", False)
+            allowed, reason = check_wp_allowed(args.url, force=force_wp)
+            if not allowed:
+                print(f"[-] Skipping WP scan: {reason}. Use --force to override.")
+            else:
+                sc = WPScanner(args.url, force=force_wp)
+                sc.scan()
+                save_report(sc.vulnerabilities, "wp_scan")
 
     # ════════════════════════════════════════════════════════
     elif args.command == "brute":
@@ -371,6 +434,11 @@ def main():
     elif args.command == "detect":
         banner()
         cmd_detect(args)
+
+    # ════════════════════════════════════════════════════════
+    elif args.command in ("js-mine", "mine", "jsmine"):
+        banner()
+        cmd_js_mine(args)
 
 
 if __name__ == "__main__":

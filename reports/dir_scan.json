@@ -1,20 +1,92 @@
 [
   {
-    "url": "https://ingetinaja.web.id/assets/",
-    "status": 403,
-    "size": 162,
-    "content_type": "text/html"
+    "url": "http://portal.uern.br/wp-includes",
+    "status": 301,
+    "size": 347,
+    "content_type": "text/html; charset=iso-8859-1"
   },
   {
-    "url": "https://ingetinaja.web.id/wp-config.php",
+    "url": "http://portal.uern.br/wp-admin",
+    "status": 301,
+    "size": 0,
+    "content_type": ""
+  },
+  {
+    "url": "http://portal.uern.br/cgi-bin/",
     "status": 403,
-    "size": 4553,
+    "size": 304,
+    "content_type": "text/html; charset=iso-8859-1"
+  },
+  {
+    "url": "http://portal.uern.br/wp-content",
+    "status": 301,
+    "size": 346,
+    "content_type": "text/html; charset=iso-8859-1"
+  },
+  {
+    "url": "http://portal.uern.br/robots.txt",
+    "status": 200,
+    "size": 115,
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "url": "http://portal.uern.br/sitemap.xml",
+    "status": 301,
+    "size": 0,
     "content_type": "text/html; charset=UTF-8"
   },
   {
-    "url": "https://ingetinaja.web.id/assets/",
+    "url": "http://portal.uern.br/dashboard",
+    "status": 301,
+    "size": 345,
+    "content_type": "text/html; charset=iso-8859-1"
+  },
+  {
+    "url": "http://portal.uern.br/.htaccess",
     "status": 403,
-    "size": 162,
+    "size": 304,
+    "content_type": "text/html; charset=iso-8859-1"
+  },
+  {
+    "url": "http://portal.uern.br/readme.html",
+    "status": 200,
+    "size": 7407,
     "content_type": "text/html"
+  },
+  {
+    "url": "http://portal.uern.br/license.txt",
+    "status": 200,
+    "size": 19903,
+    "content_type": "text/plain"
+  },
+  {
+    "url": "http://portal.uern.br/admin/index.php",
+    "status": 301,
+    "size": 0,
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "http://portal.uern.br/favicon.ico",
+    "status": 200,
+    "size": 30894,
+    "content_type": "image/x-icon"
+  },
+  {
+    "url": "http://portal.uern.br/feed",
+    "status": 301,
+    "size": 0,
+    "content_type": "application/rss+xml; charset=UTF-8"
+  },
+  {
+    "url": "http://portal.uern.br/rss",
+    "status": 301,
+    "size": 0,
+    "content_type": "application/rss+xml; charset=UTF-8"
+  },
+  {
+    "url": "http://portal.uern.br/atom",
+    "status": 301,
+    "size": 0,
+    "content_type": "application/atom+xml; charset=UTF-8"
   }
 ]

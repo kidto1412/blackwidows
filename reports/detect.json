@@ -1,28 +1,23 @@
 {
-  "url": "https://ingetinaja.web.id",
-  "final_url": "https://ingetinaja.web.id/",
+  "url": "http://portal.uern.br",
+  "final_url": "https://portal.uern.br/",
   "status": 200,
-  "server": "cloudflare",
-  "x_powered_by": "",
+  "server": "Apache/2.4.53 (Win64) OpenSSL/1.1.1n PHP/8.5.12",
+  "x_powered_by": "PHP/8.5.12",
   "frameworks": [
     {
-      "name": "React",
+      "name": "WordPress",
       "evidence": [
-        "js:react.transitional.element",
-        "js:__reactFiber",
-        "js:isReactComponent",
-        "js:createRoot",
-        "js:createElement"
+        "html:wp-content"
       ],
-      "score": 8
+      "score": 1
     },
     {
-      "name": "Cloudflare",
+      "name": "Wordpress",
       "evidence": [
-        "header:server=cloudflare",
-        "header:cf-ray"
+        "meta:generator=WordPress"
       ],
-      "score": 2
+      "score": 1
     },
     {
       "name": "Google Font API",
@@ -32,98 +27,29 @@
       "score": 1
     },
     {
-      "name": "Vite",
+      "name": "React",
       "evidence": [
-        "js:modulepreload"
+        "js:createElement"
       ],
       "score": 1
     }
   ],
   "top": {
-    "name": "React",
+    "name": "WordPress",
     "evidence": [
-      "js:react.transitional.element",
-      "js:__reactFiber",
-      "js:isReactComponent",
-      "js:createRoot",
-      "js:createElement"
+      "html:wp-content"
     ],
-    "score": 8,
-    "wordlist": "wordlists/framework/common.txt"
+    "score": 1,
+    "wordlist": "wordlists/framework/wordpress.txt"
   },
-  "api_base": "/api/v1",
-  "live_api_endpoints": [
-    {
-      "path": "/graphql",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    },
-    {
-      "path": "/gql",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    },
-    {
-      "path": "/actuator/health",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    },
-    {
-      "path": "/swagger.json",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    },
-    {
-      "path": "/openapi.json",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    },
-    {
-      "path": "/api-docs",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    },
-    {
-      "path": "/swagger/index.html",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    },
-    {
-      "path": "/swagger-ui/",
-      "status": 200,
-      "content_type": "text/html",
-      "x_powered_by": "",
-      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
-    }
-  ],
+  "api_base": null,
+  "live_api_endpoints": [],
   "raw_headers": {
-    "Date": "Thu, 12 Nov 2026 17:17:56 GMT",
-    "Content-Type": "text/html",
+    "Date": "Fri, 13 Nov 2026 04:07:56 GMT",
+    "Server": "Apache/2.4.53 (Win64) OpenSSL/1.1.1n PHP/8.5.12",
+    "X-Powered-By": "PHP/8.5.12",
+    "Last-Modified": "Fri, 13 Nov 2026 02:04:49 GMT",
     "Transfer-Encoding": "chunked",
-    "Connection": "keep-alive",
-    "Server": "cloudflare",
-    "Last-Modified": "Mon, 02 Nov 2026 11:31:50 GMT",
-    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
-    "Server-Timing": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=3,cfOrigin;dur=3",
-    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Lv3gGJNv6q8i2XHWiSewcfnJikwu6ajhZoz5CX%2Fe%2Fti2f0dubQOvZwAZog22E5LDqAj%2Bu6ftCotN4WAwKdpuI%2BRn22wAxiMAXj5VVDuPflk%2Bm8JwUajY4HKkr80INjYO1OfTZA%3D%3D\"}]}",
-    "cf-cache-status": "DYNAMIC",
-    "vary": "accept-encoding",
-    "Content-Encoding": "gzip",
-    "CF-RAY": "a597316bb84c0fd3-CGK",
-    "alt-svc": "h3=\":443\"; ma=86400"
+    "Content-Type": "text/html; charset=UTF-8"
   }
 }

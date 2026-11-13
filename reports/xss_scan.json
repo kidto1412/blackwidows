@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "type": "XSS (Reflected)",
+    "url": "https://portal.uern.br",
+    "payload": "javascript:alert(1)",
+    "field": "s"
+  },
+  {
+    "type": "XSS (Reflected)",
+    "url": "https://portal.uern.br",
+    "payload": "javascript:alert(1)",
+    "field": "s"
+  }
+]

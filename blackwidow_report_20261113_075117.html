@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BlackWidow Report</title>
+<style>
+  body { font-family: 'Courier New', monospace; background: #0d0d0d; color: #e0e0e0; padding: 20px; }
+  h1 { color: #cc0000; border-bottom: 2px solid #cc0000; padding-bottom: 8px; }
+  h2 { color: #ff4444; margin-top: 30px; }
+  pre { background: #1a1a1a; border: 1px solid #333; padding: 15px; border-radius: 4px;
+         overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+  .vuln { border-left: 4px solid #cc0000; padding-left: 10px; margin: 10px 0; }
+  .found { border-left: 4px solid #00aa44; padding-left: 10px; margin: 10px 0; }
+  .meta { color: #888; font-size: 0.85em; }
+</style>
+</head>
+<body>
+<h1>🕷 BlackWidow Report</h1>
+<p class="meta">Generated: 20261113_075117</p>
+<h2>Auth Bypass Scan</h2>
+<h2>Cred Harvest</h2>
+<div class="found"><pre>{
+  "url": "https://ingetinaja.web.id?id=1/wp-config.php",
+  "status": 403,
+  "size": 4553,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://ingetinaja.web.id?id=1/wp-config.php.bak",
+  "status": 403,
+  "size": 4553,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}</pre></div>
+<h2>Defacement Check</h2>
+<pre>{
+  "url": "https://ingetinaja.web.id",
+  "defacement_keywords": [],
+  "changed": null,
+  "hash_mismatch": null
+}</pre>
+<h2>Detect</h2>
+<pre>{
+  "url": "https://ingetinaja.web.id",
+  "final_url": "https://ingetinaja.web.id/",
+  "status": 200,
+  "server": "cloudflare",
+  "x_powered_by": "",
+  "frameworks": [
+    {
+      "name": "React",
+      "evidence": [
+        "js:react.transitional.element",
+        "js:__reactFiber",
+        "js:isReactComponent",
+        "js:createRoot",
+        "js:createElement"
+      ],
+      "score": 8
+    },
+    {
+      "name": "Cloudflare",
+      "evidence": [
+        "header:server=cloudflare",
+        "header:cf-ray"
+      ],
+      "score": 2
+    },
+    {
+      "name": "Google Font API",
+      "evidence": [
+        "html:fonts.googleapis.com"
+      ],
+      "score": 1
+    },
+    {
+      "name": "Vite",
+      "evidence": [
+        "js:modulepreload"
+      ],
+      "score": 1
+    }
+  ],
+  "top": {
+    "name": "React",
+    "evidence": [
+      "js:react.transitional.element",
+      "js:__reactFiber",
+      "js:isReactComponent",
+      "js:createRoot",
+      "js:createElement"
+    ],
+    "score": 8,
+    "wordlist": "wordlists/framework/common.txt"
+  },
+  "api_base": "/api/v1",
+  "live_api_endpoints": [
+    {
+      "path": "/graphql",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/gql",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/actuator/health",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/swagger.json",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/openapi.json",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/api-docs",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/swagger/index.html",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    },
+    {
+      "path": "/swagger-ui/",
+      "status": 200,
+      "content_type": "text/html",
+      "x_powered_by": "",
+      "body": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" "
+    }
+  ],
+  "raw_headers": {
+    "Date": "Fri, 13 Nov 2026 00:44:39 GMT",
+    "Content-Type": "text/html",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Server": "cloudflare",
+    "Last-Modified": "Mon, 02 Nov 2026 11:31:50 GMT",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Server-Timing": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=14,cfOrigin;dur=27",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=mqNsOCj8yQKRVdkJYIRWA547aysq5SUoUPHnmdQh1OHxkdx6d4rfgbgWTWPQJD2JBsQEcxgDEAtHJv8Pae%2FNTlF4tiSNb%2BkBeNhBQu4Gyu3LdoNVFu5XwnwZTYqHRDSktI0DZw%3D%3D\"}]}",
+    "cf-cache-status": "DYNAMIC",
+    "vary": "accept-encoding",
+    "Content-Encoding": "gzip",
+    "CF-RAY": "a599bfc97cc3c61e-SIN",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  }
+}</pre>
+<h2>Dir Scan</h2>
+<div class="found"><pre>{
+  "url": "https://ingetinaja.web.id/favicon.png",
+  "status": 200,
+  "size": 5731,
+  "content_type": "image/png"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://ingetinaja.web.id/api",
+  "status": 301,
+  "size": 178,
+  "content_type": "text/html"
+}</pre></div>
+<h2>Idor Scan</h2>
+<h2>Port Scan</h2>
+<div class="found"><pre>{
+  "port": 80,
+  "status": "open",
+  "service": "http"
+}</pre></div>
+<div class="found"><pre>{
+  "port": 443,
+  "status": "open",
+  "service": "https"
+}</pre></div>
+<h2>Session Scan</h2>
+<h2>Sqli Scan</h2>
+<h2>Ssrf Scan</h2>
+<h2>Subdomain Scan</h2>
+<div class="found"><pre>{
+  "subdomain": "www.ingetinaja.web.id",
+  "url": "https://www.ingetinaja.web.id",
+  "status": 200,
+  "title": "ingetinaja. | Remember only what matters."
+}</pre></div>
+<h2>Wp Scan</h2>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-login.php",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-admin",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-admin/admin-ajax.php",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-content",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-includes",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/xmlrpc.php",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/readme.html",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/license.txt",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-json/wp/v2/users",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-json/",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/debug.log",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WordPress Vulnerability",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/plugins/wp-file-manager/readme.txt",
+  "details": "WP File Manager RCE (CVE-2020-25213)"
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WordPress Vulnerability",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/plugins/revslider/",
+  "details": "RevSlider Arbitrary File Upload"
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WordPress Vulnerability",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/plugins/duplicator/installer/build/step1.php",
+  "details": "Duplicator RCE (CVE-2020-11738)"
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WordPress Vulnerability",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/plugins/contact-form-7/readme.txt",
+  "details": "Contact Form 7 \u2014 check version"
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WordPress Vulnerability",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/plugins/elementor/readme.txt",
+  "details": "Elementor \u2014 check version"
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WordPress Vulnerability",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/plugins/woocommerce/readme.txt",
+  "details": "WooCommerce \u2014 check version"
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WordPress Vulnerability",
+  "url": "https://ingetinaja.web.id?id=1/wp-content/plugins/akismet/readme.txt",
+  "details": "Akismet \u2014 check version"
+}</pre></div>
+<h2>Xss Scan</h2>
+</body></html>

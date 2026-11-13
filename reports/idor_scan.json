@@ -1,0 +1,394 @@
+[
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=2",
+    "param": "id",
+    "id_tested": 2,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=3",
+    "param": "id",
+    "id_tested": 3,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=4",
+    "param": "id",
+    "id_tested": 4,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=5",
+    "param": "id",
+    "id_tested": 5,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=6",
+    "param": "id",
+    "id_tested": 6,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=7",
+    "param": "id",
+    "id_tested": 7,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=8",
+    "param": "id",
+    "id_tested": 8,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=9",
+    "param": "id",
+    "id_tested": 9,
+    "status": 200,
+    "response_length": 753853
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=10",
+    "param": "id",
+    "id_tested": 10,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=11",
+    "param": "id",
+    "id_tested": 11,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=12",
+    "param": "id",
+    "id_tested": 12,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=13",
+    "param": "id",
+    "id_tested": 13,
+    "status": 200,
+    "response_length": 753852
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=14",
+    "param": "id",
+    "id_tested": 14,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=15",
+    "param": "id",
+    "id_tested": 15,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=16",
+    "param": "id",
+    "id_tested": 16,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=17",
+    "param": "id",
+    "id_tested": 17,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=18",
+    "param": "id",
+    "id_tested": 18,
+    "status": 200,
+    "response_length": 753852
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=19",
+    "param": "id",
+    "id_tested": 19,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=20",
+    "param": "id",
+    "id_tested": 20,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=21",
+    "param": "id",
+    "id_tested": 21,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=22",
+    "param": "id",
+    "id_tested": 22,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=23",
+    "param": "id",
+    "id_tested": 23,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=24",
+    "param": "id",
+    "id_tested": 24,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=25",
+    "param": "id",
+    "id_tested": 25,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=26",
+    "param": "id",
+    "id_tested": 26,
+    "status": 200,
+    "response_length": 753852
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=27",
+    "param": "id",
+    "id_tested": 27,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=28",
+    "param": "id",
+    "id_tested": 28,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=29",
+    "param": "id",
+    "id_tested": 29,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=30",
+    "param": "id",
+    "id_tested": 30,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=31",
+    "param": "id",
+    "id_tested": 31,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=32",
+    "param": "id",
+    "id_tested": 32,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=33",
+    "param": "id",
+    "id_tested": 33,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=34",
+    "param": "id",
+    "id_tested": 34,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=35",
+    "param": "id",
+    "id_tested": 35,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=36",
+    "param": "id",
+    "id_tested": 36,
+    "status": 200,
+    "response_length": 753852
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=37",
+    "param": "id",
+    "id_tested": 37,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=38",
+    "param": "id",
+    "id_tested": 38,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=39",
+    "param": "id",
+    "id_tested": 39,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=40",
+    "param": "id",
+    "id_tested": 40,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=41",
+    "param": "id",
+    "id_tested": 41,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=42",
+    "param": "id",
+    "id_tested": 42,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=43",
+    "param": "id",
+    "id_tested": 43,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=44",
+    "param": "id",
+    "id_tested": 44,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=45",
+    "param": "id",
+    "id_tested": 45,
+    "status": 200,
+    "response_length": 753852
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=46",
+    "param": "id",
+    "id_tested": 46,
+    "status": 200,
+    "response_length": 753852
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=47",
+    "param": "id",
+    "id_tested": 47,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=48",
+    "param": "id",
+    "id_tested": 48,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=49",
+    "param": "id",
+    "id_tested": 49,
+    "status": 200,
+    "response_length": 753854
+  },
+  {
+    "type": "IDOR",
+    "url": "http://portal.uern.br?id=50",
+    "param": "id",
+    "id_tested": 50,
+    "status": 200,
+    "response_length": 753854
+  }
+]

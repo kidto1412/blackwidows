@@ -1,16 +1,20 @@
 [
   {
-    "url": "https://ingetinaja.web.id/wp-config.php",
-    "status": 403,
-    "size": 4553,
-    "note": "Forbidden \u2014 file may exist but access is blocked",
+    "url": "http://portal.uern.br/wp-config.php",
+    "status": 200,
+    "size": 213,
     "credentials": []
   },
   {
-    "url": "https://ingetinaja.web.id/wp-config.php.bak",
-    "status": 403,
-    "size": 4553,
-    "note": "Forbidden \u2014 file may exist but access is blocked",
+    "url": "http://portal.uern.br/info.php",
+    "status": 200,
+    "size": 86514,
+    "credentials": []
+  },
+  {
+    "url": "http://portal.uern.br/robots.txt",
+    "status": 200,
+    "size": 115,
     "credentials": []
   }
 ]
